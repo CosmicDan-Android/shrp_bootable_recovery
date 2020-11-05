@@ -136,6 +136,10 @@ bool GUIObject::isConditionTrue(Condition* condition)
 	if (condition->mCompareOp.find('=') != string::npos && var1 == var2)
 		return bTrue;
 
+	// CosmicDan: if var1 starts with var2
+	if (condition->mCompareOp.find('^') != string::npos && (var1.rfind(var2, 0) == 0))
+		return bTrue;
+
 	if (condition->mCompareOp.find('>') != string::npos && (atof(var1.c_str()) > atof(var2.c_str())))
 		return bTrue;
 
