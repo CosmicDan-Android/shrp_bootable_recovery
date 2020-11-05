@@ -952,5 +952,11 @@
 		<string name="unmount_sys_install">Unmount System before installing a ZIP</string>
 		<string name="unmount_system">Unmounting System...</string>
 		<string name="unmount_system_err">Failed unmounting System</string>
+
+		<!-- CosmicDan Mod additional -->
+		<string name="c_flash_image_resize_skip">Skip auto-resize (for e.g. stock ROM or verity)</string>
+		<string name="flash_image_resize_start">Enlarging filesystem to fit full partition...</string>
+		<string name="flash_image_resize_forbidden">Auto resize skipped; mount-system-ro is enabled</string>
+		<string name="flash_image_resize_skipped">Auto resize skipped by user request</string>
 	</resources>
 </language>

@@ -3233,6 +3233,20 @@ bool TWPartition::Flash_Sparse_Image(const string& Filename) {
 	Command = "simg2img '" + Filename + "' '" + Actual_Block_Device + "'";
 	LOGINFO("Flash command: '%s'\n", Command.c_str());
 	TWFunc::Exec_Cmd(Command);
+	// CosmicDan: do resize if system_root is being flashed...
+	if (Mount_Point == "/system_image") {
+		// ...and if skip resize was not checked in the GUI nor mount-system-ro set
+		int skipSystemResize = DataManager::GetIntValue("tw_skip_gsi_resize");
+		if (DataManager::GetIntValue("tw_mount_system_ro") > 0) {
+			gui_msg("flash_image_resize_forbidden=Auto resize skipped; mount-system-ro is enabled");
+		} else if (skipSystemResize == 1) {
+			gui_msg("flash_image_resize_skipped=Auto resize skipped by user request");
+		} else {
+			gui_msg("flash_image_resize_start=Enlarging filesystem to fit full partition (if necessary)...");
+			Command = "e2fsck -fp '" + Actual_Block_Device + "'; resize2fs '" + Actual_Block_Device + "'";
+			TWFunc::Exec_Cmd(Command);
+		}
+	}
 	return true;
 }
 

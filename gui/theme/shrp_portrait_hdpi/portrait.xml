@@ -4113,6 +4113,15 @@
 				<placement x="%c_hawk_base_column%" y="%c_hawk_base_second_header%"/>
 				<text>{@confirm_flash_hdr=Confirm Flash}</text>
 			</text>
+
+			<!-- CosmicDan: GSI auto-resize feature for system images -->
+			<checkbox>
+				<condition var1="tw_flash_partition" op="^" var2="/system_image;"/>
+				<placement x="%c_hawk_base_column%" y="1350"/>
+				<text>{@c_flash_image_resize_skip=Skip auto-resize (for e.g. stock ROM or verity)}</text>
+				<data variable="tw_skip_gsi_resize"/>
+			</checkbox>
+
 			<button>
 				<placement x="860" y="1628"/>
 				<image resource="c_flash"/>
